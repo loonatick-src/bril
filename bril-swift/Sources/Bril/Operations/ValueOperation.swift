@@ -14,6 +14,11 @@ public struct ValueOperation: Equatable {
         case gt
         case le
         case ge
+        case feq
+        case flt
+        case fgt
+        case fle
+        case fge
         case not
         case and
         case or

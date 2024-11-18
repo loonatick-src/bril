@@ -28,11 +28,11 @@ extension Instruction: Decodable {
     private static func makeConstant(from decoder: Decoder) throws -> Instruction {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        guard let dest = try? container.decodeIfPresent(String.self, forKey: .dest) else {
+        guard let dest = try container.decodeIfPresent(String.self, forKey: .dest) else {
             throw BrilParseError(message: "'const' field 'dest' is missing")
         }
 
-        guard let type = try? container.decodeIfPresent(Type.self, forKey: .type) else {
+        guard let type = try container.decodeIfPresent(Type.self, forKey: .type) else {
             throw BrilParseError(message: "'const' field 'type' is missing")
         }
 
@@ -50,12 +50,12 @@ extension Instruction: Decodable {
     private static func makeCall(from decoder: Decoder) throws -> Instruction {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        let args = (try? container.decodeIfPresent([String].self, forKey: .args)) ?? []
-        let funcs = (try? container.decodeIfPresent([String].self, forKey: .funcs)) ?? []
-        let labels = (try? container.decodeIfPresent([String].self, forKey: .labels)) ?? []
+        let args = (try container.decodeIfPresent([String].self, forKey: .args)) ?? []
+        let funcs = (try container.decodeIfPresent([String].self, forKey: .funcs)) ?? []
+        let labels = (try container.decodeIfPresent([String].self, forKey: .labels)) ?? []
 
-        if let dest = try? container.decodeIfPresent(String.self, forKey: .dest) {
-            guard let type = try? container.decodeIfPresent(Type.self, forKey: .type) else {
+        if let dest = try container.decodeIfPresent(String.self, forKey: .dest) {
+            guard let type = try container.decodeIfPresent(Type.self, forKey: .type) else {
                 throw BrilParseError(message: "'call' with 'dest' must have 'type'")
             }
             return .value(.init(opType: .call, destination: dest, type: type, arguments: args, functions: funcs, labels: labels))

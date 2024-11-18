@@ -4,6 +4,11 @@ public struct ValueOperation: Equatable {
         case sub
         case mul
         case div
+        case ptradd
+        case fadd
+        case fsub
+        case fmul
+        case fdiv
         case eq
         case lt
         case gt
@@ -15,6 +20,8 @@ public struct ValueOperation: Equatable {
         case call
         case id
         case phi
+        case alloc
+        case load
     }
     public let opType: OpType
     public var destination: String

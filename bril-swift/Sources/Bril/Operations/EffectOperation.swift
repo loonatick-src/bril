@@ -6,6 +6,8 @@ public struct EffectOperation: Equatable {
         case ret
         case print
         case nop
+        case store
+        case free
     }
     public let opType: OpType
     public var arguments: [String]
